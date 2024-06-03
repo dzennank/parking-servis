@@ -37,7 +37,8 @@ namespace ParkingServis.Server.Services.UserServices.Query
                             LastName = reader.GetString("last_name"),
                             Email = reader.GetString("email"),
                             Password = reader.GetString("password"),
-                            Adress = reader.GetString("adress")
+                            Adress = reader.GetString("adress"),
+                            Credits = reader.GetDecimal("credits")
                         };
                     }
                 }

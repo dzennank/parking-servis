@@ -69,6 +69,7 @@
                     <RowDefinition Height="0.8*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{StaticResource titleText}" Foreground="Black" HorizontalAlignment="Left" Margin="30 0 0 0">Top Lokacije:</TextBlock>
+                <TextBlock Name="creditsDataTb" HorizontalAlignment="Right" Style="{StaticResource titleText}" Foreground="Black" Margin="30 0 0 0">Stanje na racunu:</TextBlock>
                 <Grid Grid.Row="1" x:Name="locationsGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*" />

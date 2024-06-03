@@ -69,6 +69,7 @@ namespace ParkingServis.Client.Dialogs
                 );
                 if (isSessionAdded)
                 {
+                    Globals.ParkedVehicleRegNumber = selectedItem.Content.ToString();
                     LocationUpdated?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }

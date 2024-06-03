@@ -10,5 +10,6 @@ namespace ParkingServis.Server.Services.UserServices.Command
     public interface UserCommandInterface
     {
         public Task<bool> CreateUser(User user);
+        public Task<bool> UpdateUserCredits(decimal credits, int userId);
     }
 }

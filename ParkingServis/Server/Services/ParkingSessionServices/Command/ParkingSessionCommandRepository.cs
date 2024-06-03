@@ -41,5 +41,28 @@ namespace ParkingServis.Server.Services.ParkingSessionServices.Command
             }
             
         }
+
+        public async Task<bool> PayParkingSession(int sessionId, decimal price, DateTime parkEnd)
+        {
+            try
+            {
+                DatabaseSettings connection = new DatabaseSettings();
+                string sql = $"UPDATE `parking_session` SET `payment_status` = @paymentStatus, `parking_end` = @parkingEnd, `price_paid` = @price WHERE `id` = @id";
+                var parametars = new Dictionary<string, object>
+                {
+                    {"@paymentStatus", 1 },
+                    {"@parkingEnd", parkEnd },
+                    {"@price", price },
+                    {"@id", sessionId }
+                };
+                await connection.executeNonQueryAsyncParams(sql, parametars);
+                return true;
+
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

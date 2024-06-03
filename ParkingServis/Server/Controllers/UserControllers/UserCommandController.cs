@@ -11,6 +11,7 @@ namespace ParkingServis.Server.Controllers.UserControllers
     public class UserCommandController
     {
         private readonly UserCommandInterface _commandRepository;
+
         public UserCommandController(UserCommandInterface commandRepository)
         {
             _commandRepository = commandRepository;
@@ -27,6 +28,11 @@ namespace ParkingServis.Server.Controllers.UserControllers
             {
                 return false;
             }
+        }
+
+        public async Task<bool> UpdateUserCredits(decimal credits, int userId)
+        {
+            return await _commandRepository.UpdateUserCredits(credits, userId);
         }
     }
 }

@@ -199,6 +199,7 @@ namespace ParkingServis.Client.Views
                     Email = emailTb.Text,
                     Password = passTb.Password,
                     Adress = adressTb.Text,
+                    Credits = 500,
                 };
                bool isUserCreated = await _userController.CreateUser(newUser);
                 if (isUserCreated)

@@ -1,0 +1,98 @@
+﻿<Window x:Class="ParkingServis.Client.Dialogs.ParkingPayment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ParkingServis.Client.Dialogs"
+        mc:Ignorable="d"
+        Title="ParkingPayment" Height="660" Width="500"
+        Background="#f0f0f0" FontFamily="Segoe UI" FontSize="14">
+    <Window.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" Padding="10" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Naplata parkinga" FontSize="24" FontWeight="Bold" 
+                   Foreground="#333" Margin="0,0,0,20" HorizontalAlignment="Center" Grid.Row="0"/>
+
+        <StackPanel Grid.Row="1" Margin="0,0,0,10">
+            <TextBlock Text="Lokacija:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="ParkingLocationTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Margin="0,0,0,10">
+            <TextBlock Text="Registraciona oznaka vozila:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="VehicleRegNumberTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="0,0,0,10">
+            <TextBlock Text="Korisnik:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="UserNameTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Margin="0,0,0,10">
+            <TextBlock Text="Pocetak parking sesije:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="DateOfParkStartTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Margin="0,0,0,10">
+            <TextBlock Text="Kraj parking sesije:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="DateOfParkEndTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Margin="0,0,0,20">
+            <TextBlock Text="Cena:" FontWeight="SemiBold" Foreground="#333"/>
+            <Border Background="#fff" BorderBrush="#ccc" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,5,0,0">
+                <TextBlock Name="PriceToPayTextBlock"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Name="PayByCardButton" Content="Plati depozitom" Width="120" Margin="5" 
+                    Background="#0078D7" Foreground="White" Padding="10" BorderThickness="0" 
+                    Style="{StaticResource ModernButtonStyle}" Click="PayByCardButton_Click"/>
+            <Button Name="PayByCashButton" Content="Plati karticom" Width="120" Margin="5" 
+                    Background="#28a745" Foreground="White" Padding="10" BorderThickness="0" 
+                    Style="{StaticResource ModernButtonStyle}"/>
+            <Button Name="PayByMobileButton" Content="Pay by Mobile" Width="120" Margin="5" 
+                    Background="#ffc107" Foreground="White" Padding="10" BorderThickness="0" 
+                    Style="{StaticResource ModernButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

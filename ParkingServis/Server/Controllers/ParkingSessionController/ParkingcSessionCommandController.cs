@@ -21,5 +21,10 @@ namespace ParkingServis.Server.Controllers.ParkingSessionController
             return await _parkingSessionCommandRepository.AddParkingSession(parkingSession);
            
         }
+
+        public async Task<bool> PayParking(int sessionId, decimal price, DateTime parkEnd)
+        {
+            return await _parkingSessionCommandRepository.PayParkingSession(sessionId, price, parkEnd); 
+        }
     }
 }

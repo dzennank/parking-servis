@@ -10,5 +10,6 @@ namespace ParkingServis.Server.Services.ParkingSessionServices.Command
     public interface IParkingSessionCommandRepository
     {
        Task<bool> AddParkingSession(ParkingSession parkingSession);
+        Task<bool> PayParkingSession(int sessionId, decimal price, DateTime parkEnd);
     }
 }

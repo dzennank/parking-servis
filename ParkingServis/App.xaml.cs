@@ -64,6 +64,7 @@ namespace ParkingServis
             services.AddTransient<RegistrationWindow>();
             services.AddTransient<HomeWindow>();
             services.AddTransient<ParkDialog>();
+            services.AddTransient<ParkingPayment>();
         }
     }
 

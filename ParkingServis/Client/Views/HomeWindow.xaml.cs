@@ -48,7 +48,7 @@ namespace ParkingServis.Client.Views
             AddMarkerToLocations(locations);
             GenerateParkingLocationUI(locations);
             _serviceProvider = serviceProvider;
-
+            creditsDataTb.Text = $"Stanje na racunu: {Globals.CurrentUser.Credits}";
         }
 
         private async void AddMarkerToLocations(List<Server.Models.Location> locations)
@@ -130,7 +130,8 @@ namespace ParkingServis.Client.Views
                     Margin = new Thickness(0, 5, 0, 0),
                     Style = (Style)FindResource("titleText"),
                     FontSize = 18,
-                    Text = $"Naziv: {location.Name}"
+                    Text = $"Naziv: {location.Name}",
+                    Name = "locationNameTb"
                 };
 
                 TextBlock freeSpotsTextBlock = new TextBlock
@@ -140,6 +141,8 @@ namespace ParkingServis.Client.Views
                     FontSize = 18,
                     Text = $"Broj slobodnih mesta: {location.Capacity}"
                 };
+
+               
               
 
                 // Add TextBlocks to StackPanel
@@ -164,7 +167,7 @@ namespace ParkingServis.Client.Views
             {
                 foreach (var session in existingSessions)
                 {
-                    ChangeBorderColorOfParkedLocation(session.LocationId);
+                    ChangeBorderColorOfParkedLocation(session.LocationId, session.VehicleReg, session.ParkingStart, session.Id);
 
                 }
             }
@@ -179,9 +182,9 @@ namespace ParkingServis.Client.Views
         }
         private void DetailsWindow_LocationUpdated(object sender, EventArgs e)
         {
-            ChangeBorderColorOfParkedLocation(Globals.ClickedLocation.Id);
+            ChangeBorderColorOfParkedLocation(Globals.ClickedLocation.Id, Globals.ParkedVehicleRegNumber, DateTime.Now, 0);
         }
-        private void ChangeBorderColorOfParkedLocation(int locationId)
+        private void ChangeBorderColorOfParkedLocation(int locationId, string regNumber, DateTime parkingStart, int sessionId)
         {
             foreach(var child in locationsGrid.Children)
             {
@@ -201,7 +204,7 @@ namespace ParkingServis.Client.Views
                                     Margin = new Thickness(0, 5, 0, 0),
                                     Style = (Style)FindResource("titleText"),
                                     FontSize = 18,
-                                    Text = $"Parkirano vozilo: NP1312PP",
+                                    Text = $"Parkirano vozilo: {regNumber}",
 
                                 };
                                 TextBlock timeTb = new TextBlock
@@ -218,13 +221,43 @@ namespace ParkingServis.Client.Views
                                     Margin = new Thickness(0, 5, 0, 0),
                                     Style = (Style)FindResource("titleText"),
                                     FontSize = 18,
-                                    Text = $"{DateTime.Now}",
+                                    Text = $"{parkingStart}",
 
                                 };
 
+                                Button endParkBtn = new Button
+                                {
+                                    Style = (Style)FindResource("button"),
+                                    Background = Brushes.IndianRed,
+                                    Foreground = Brushes.White,
+                                    Margin = new Thickness(0, 15, 0, 0),
+                                    Content = "Zavrsi parking"
+                                    
+                                };
+                                endParkBtn.Click += (sender, e) =>
+                                {
+                                    string locationName = "";
+                                    foreach(var element in panel.Children)
+                                    {
+                                        if(element is TextBlock tb) 
+                                        {
+                                            if(tb.Name == "locationNameTb")
+                                                locationName = tb.Text;
+                                        }
+                                    }
+
+                                    ParkingPayment.RegNumber = regNumber;
+                                    ParkingPayment.LocationName = locationName;
+                                    ParkingPayment.parkingStart = parkingStart;
+                                    ParkingPayment.sessionId = sessionId;
+                                    ParkingPayment parkingPayment = _serviceProvider.GetRequiredService<ParkingPayment>();
+                                    parkingPayment.ReloadHome += ParkingPaymentReloadHome;
+                                    parkingPayment.Show();
+                                };
                                 panel.Children.Add(nameTextBlock);
                                 panel.Children.Add(timeTb);
                                 panel.Children.Add(time);
+                                panel.Children.Add(endParkBtn);
                             }
                         }
                     }
@@ -232,6 +265,18 @@ namespace ParkingServis.Client.Views
                 }
               
             }
+        }
+
+        public void ReloadHomeWindow()
+        {
+            HomeWindow home = _serviceProvider.GetRequiredService<HomeWindow>();
+            home.Show();
+            this.Close();
+        }
+
+        private void ParkingPaymentReloadHome(object sender, EventArgs e)
+        {
+            ReloadHomeWindow();
         }
 
     }
