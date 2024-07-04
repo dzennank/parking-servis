@@ -15,5 +15,6 @@ namespace ParkingServis.Server.Models
         public string Password { get; set; }
         public string Adress { get; set; }
         public decimal Credits { get; set; }
+        public string Role { get; set; }
     }
 }

@@ -35,6 +35,29 @@ namespace ParkingServis.Server.Services.UserServices.Command
             }
         }
 
+        public async Task<bool> UpdateUser(User user)
+        {
+            try
+            {
+                DatabaseSettings connection = new DatabaseSettings();
+                string sql = "UPDATE `users` SET `first_name` = @firstName, `last_name` = @lastName, email = @email, `adress` = @adress WHERE `id` = @userId";
+                var parametars = new Dictionary<string, object>
+                {
+                    { "@firstName", user.FirstName },
+                    { "@lastName", user.LastName },
+                    { "@email", user.Email },
+                    { "@adress", user.Adress },
+                    { "@userId", user.Id }
+                };
+                await connection.executeQueryCommandAsyncParams(sql, parametars);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> UpdateUserCredits(decimal credits, int userId)
         {
             try

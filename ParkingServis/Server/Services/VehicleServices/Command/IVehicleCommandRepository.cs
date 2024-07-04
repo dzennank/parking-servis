@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingServis.Server.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ParkingServis.Server.Services.VehicleServices.Command
 {
     public interface IVehicleCommandRepository
     {
+        public Task<bool> CreateVehicle(Vehicle vehicle, int userId);
     }
 }

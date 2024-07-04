@@ -23,6 +23,7 @@ namespace ParkingServis.Client.Dialogs
     /// </summary>
     public partial class ParkingPayment : Window
     {
+       
         public static string RegNumber { get; set; }
         public static string LocationName { get; set; }
         public static DateTime parkingStart { get; set; }
@@ -66,7 +67,7 @@ namespace ParkingServis.Client.Dialogs
                 _userCommandRepository.UpdateUserCredits(priceToPay, Globals.CurrentUser.Id);
                 Globals.CurrentUser.Credits -= priceToPay; 
                 ReloadHome?.Invoke(this, EventArgs.Empty);
-
+                this.Close();
                 //send bill email
             }
         }

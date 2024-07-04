@@ -12,5 +12,8 @@ namespace ParkingServis.Client
         public static User CurrentUser { get; set; }
         public static Location ClickedLocation { get; set; }
         public static string ParkedVehicleRegNumber { get; set; }
+        public static ParkingSession CurrentParkingSession { get; set; }
+
+        public static bool IsReservationSession { get; set; }
     }
 }

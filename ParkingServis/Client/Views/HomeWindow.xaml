@@ -29,28 +29,43 @@
                 <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\parkingServisLogo.png" Height="400" Width="400" HorizontalAlignment="Center"></Image>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2.5*"/>
-                        <RowDefinition Height="2.5*"/>
-                        <RowDefinition Height="2.5*"/>
-                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Name="vehiclesNavTb" Grid.Row="2">
                         <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\location.png" Height="50" Width="50"></Image>
-                        <TextBlock Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10">
+                        <TextBlock  MouseLeftButtonDown="TextBlock_MouseLeftButtonDown_1" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10">
+                            Vozila
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Name="allLocationsNavTb" Grid.Row="3">
+                        <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\location.png" Height="50" Width="50"></Image>
+                        <TextBlock  MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10">
                             Lokacije
                         </TextBlock>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top">
                         <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\account.png" Height="50" Width="50"></Image>
-                        <TextBlock Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10">
+                        <TextBlock Name="profilNav" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10" MouseLeftButtonDown="profilNav_MouseLeftButtonDown">
                              Profil
                         </TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Top">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
                         <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\wallet.png" Height="50" Width="50"></Image>
-                        <TextBlock Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10">
+                        <TextBlock Name="transactionNav" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10" MouseLeftButtonDown="TransactionNav_OnMouseLeftButtonDown">
                              Transakcije
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Top">
+                        <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\logout.png" Height="50" Width="50"></Image>
+                        <TextBlock Name="logOutNav" Style="{StaticResource titleText}" HorizontalAlignment="Left" Margin="10" MouseLeftButtonDown="logOutNav_MouseLeftButtonDown">
+                            Odjavi se
                         </TextBlock>
                     </StackPanel>
                 </Grid>

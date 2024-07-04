@@ -1,0 +1,45 @@
+﻿<Window x:Class="ParkingServis.Client.Views.TransactionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ParkingServis.Client.Views"
+        mc:Ignorable="d"
+        Title="TransactionsWindow" Height="550" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.85*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Columns="3">
+            <Border Background="LightGray" Margin="15 5 5 5" CornerRadius="15">
+                <StackPanel>
+                    <Label FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"> Ukupno sesija</Label>
+                    <Label Name="totalSessionsLb" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="LimeGreen"> 20 </Label>
+                </StackPanel>
+            </Border>
+            <Border></Border>
+            <Border Background="LightGray" Margin="5 5 15 5" CornerRadius="15">
+                <StackPanel>
+                    <Label  FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center">Ukupno potroseno</Label>
+                    <Label Name="totalSpentLb" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="IndianRed">20</Label>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <Border Margin="10 5 10 0" Grid.Row="1">
+            <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <DataGrid Name="transactionDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Height="850" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lokacija" MinWidth="200" Width="*" Binding="{Binding LocationId}" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Reg Oznaka" Width="*" Binding="{Binding VehicleReg}" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Pocetak"  Width="*" Binding="{Binding ParkingStart}" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Kraj"  Width="*" Binding="{Binding ParkingEnd}" FontWeight="Bold"/>
+                        <DataGridTextColumn Header="Cena" MinWidth="200" Width="*" Binding="{Binding PricePaid}" FontWeight="Bold"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+</Grid>
+</Window>

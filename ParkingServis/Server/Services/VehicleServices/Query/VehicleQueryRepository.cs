@@ -31,7 +31,11 @@ namespace ParkingServis.Server.Services.VehicleServices.Query
                     Vehicle vehicle = new Vehicle
                     {
                         Id = reader.GetInt32("id"),
-                        RegNumber = reader.GetString("reg_number")
+                        RegNumber = reader.GetString("reg_number"),
+                        Brand = reader.GetString("brand"),
+                        Model = reader.GetString("Model"),
+                        Color = reader.GetString("Color"),
+                        ProductionYear = reader.GetInt32("production_year")
                     };
                     vehicles.Add(vehicle);
                 }

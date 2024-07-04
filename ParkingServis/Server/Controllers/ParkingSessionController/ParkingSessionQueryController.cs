@@ -16,9 +16,23 @@ namespace ParkingServis.Server.Controllers.ParkingSessionController
             _parkingSessionQueryRepository = parkingSessionQueryRepository;
         }
 
-        public async Task<List<ParkingSession>> GetSessionsByUserId(int userId)
+        public async Task<List<ParkingSession>> GetSessionsByUserId(int userId, int paymentStatus)
         {
-            return await _parkingSessionQueryRepository.GetParkingSessionByUserId(userId);
+            return await _parkingSessionQueryRepository.GetParkingSessionByUserId(userId, paymentStatus);
+        }
+        public int GetLastId()
+        {
+            return _parkingSessionQueryRepository.GetLastId();
+        }
+
+        public async Task<List<ParkingSession>> GetSessionsByLocationId(int locationId)
+        {
+            return await _parkingSessionQueryRepository.GetParkingSessionByLocationId(locationId);
+        }
+
+        public int GetNumberOfActiveSessionsByLocationId(int locationId)
+        {
+            return _parkingSessionQueryRepository.GetNumberOfActiveSessionsByLocationId(locationId);
         }
     }
 }

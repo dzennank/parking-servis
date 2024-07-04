@@ -15,7 +15,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ParkingServis.Client.Views;
+using Xceed.Wpf.Toolkit;
 using static MaterialDesignThemes.Wpf.Theme;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ParkingServis.Client.Dialogs
 {
@@ -41,6 +44,7 @@ namespace ParkingServis.Client.Dialogs
             _parkingcSessionCommandController = parkingcSessionCommandController;
             _parkingSessionQueryController = parkingSessionQueryController;
             vehicles = _vehicleQueryController.GetVehiclesByUserId(Globals.CurrentUser.Id);
+            LocationNameTb.Text = Globals.ClickedLocation.Name;
 
             foreach (var vehicle in vehicles)
             {
@@ -53,41 +57,52 @@ namespace ParkingServis.Client.Dialogs
         private async void parkBtn_Click(object sender, RoutedEventArgs e)
         {
             ComboBoxItem selectedItem = vehicleListCb.SelectedItem as ComboBoxItem;
-            bool sesionExists = await CheckIfSessionExists(selectedItem.Content.ToString());
-            if(selectedItem != null && !sesionExists)
+           
+            if(selectedItem != null)
             {
-                ParkingSession session = new ParkingSession
+                bool sesionExists = await CheckIfSessionExists(selectedItem.Content.ToString());
+                if (!sesionExists)
                 {
-                    UserId = Globals.CurrentUser.Id,
-                    LocationId = Globals.ClickedLocation.Id,
-                    VehicleReg = selectedItem.Content.ToString(),
-                    ParkingStart = DateTime.Now,
-                    PaymentStatus = false
-                };
-                bool isSessionAdded = await _parkingcSessionCommandController.AddParkingSession(
-                    session
-                );
-                if (isSessionAdded)
-                {
-                    Globals.ParkedVehicleRegNumber = selectedItem.Content.ToString();
-                    LocationUpdated?.Invoke(this, EventArgs.Empty);
-                    this.Close();
+                    ParkingSession session = new ParkingSession
+                    {
+                        UserId = Globals.CurrentUser.Id,
+                        LocationId = Globals.ClickedLocation.Id,
+                        VehicleReg = selectedItem.Content.ToString(),
+                        ParkingStart = DateTime.Now,
+                        PaymentStatus = false
+                    };
+                    bool isSessionAdded = await _parkingcSessionCommandController.AddParkingSession(
+                        session
+                    );
+                    if (isSessionAdded)
+                    {
+                        session.Id = _parkingSessionQueryController.GetLastId();
+                        Globals.CurrentParkingSession = session;
+                        //Globals.ParkedVehicleRegNumber = selectedItem.Content.ToString();
+                        LocationUpdated?.Invoke(this, EventArgs.Empty);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doslo je do greske");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Doslo je do greske");
+                    MessageBox.Show($"Vec ste parkirali vozilo {selectedItem.Content.ToString()}, pokusajte sa drugim vozilom");
                 }
+
             }
             else
             {
-                MessageBox.Show($"Vec ste parkirali vozilo {selectedItem.Content.ToString()}, pokusajte sa drugim vozilom");
+                MessageBox.Show("Izaberite vozilo");
             }
-            
+
         }
 
         private async Task<bool> CheckIfSessionExists(string regNumber)
         {
-            List<ParkingSession> parkingSessions = await _parkingSessionQueryController.GetSessionsByUserId(Globals.CurrentUser.Id);
+            List<ParkingSession> parkingSessions = await _parkingSessionQueryController.GetSessionsByUserId(Globals.CurrentUser.Id, 0);
             if(parkingSessions.Count > 0 )
             {
                 foreach( var parkingSession in parkingSessions )
@@ -104,6 +119,62 @@ namespace ParkingServis.Client.Dialogs
             {
                 return false;
             }
+        }
+
+        private async void confrimReservationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.IsReservationSession = true;
+            ComboBoxItem selectedItem = vehicleListCb.SelectedItem as ComboBoxItem;
+           
+            if (selectedItem != null)
+            {
+                
+                bool sesionExists = await CheckIfSessionExists(selectedItem.Content.ToString());
+                if (!sesionExists)
+                {
+                    DateTime selectedDateTime = reservationDate.Value ?? DateTime.Now;
+                    ParkingSession session = new ParkingSession
+                    {
+                        UserId = Globals.CurrentUser.Id,
+                        LocationId = Globals.ClickedLocation.Id,
+                        VehicleReg = selectedItem.Content.ToString(),
+                        ParkingStart = selectedDateTime,
+                        PaymentStatus = false
+                    };
+                    bool isSessionAdded = await _parkingcSessionCommandController.AddParkingSession(
+                        session
+                    );
+                    if (isSessionAdded)
+                    {
+                        session.Id = _parkingSessionQueryController.GetLastId();
+                        Globals.CurrentParkingSession = session;
+                        HomeWindow.ReservationDate = selectedDateTime;
+                        //Globals.ParkedVehicleRegNumber = selectedItem.Content.ToString();
+                        LocationUpdated?.Invoke(this, EventArgs.Empty);
+                        Globals.IsReservationSession = false;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Doslo je do greske");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Vec ste parkirali vozilo {selectedItem.Content.ToString()}, pokusajte sa drugim vozilom");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Izaberite vozilo");
+            }
+           
+        }
+
+        private void reservationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            reservationPanel.Visibility = Visibility.Visible;
         }
     }
 }

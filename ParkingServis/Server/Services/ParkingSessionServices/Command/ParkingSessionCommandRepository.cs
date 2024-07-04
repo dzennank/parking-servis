@@ -55,8 +55,16 @@ namespace ParkingServis.Server.Services.ParkingSessionServices.Command
                     {"@price", price },
                     {"@id", sessionId }
                 };
-                await connection.executeNonQueryAsyncParams(sql, parametars);
-                return true;
+                int result = await connection.ExecuteNonQuery(sql, parametars);
+                if(result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+
+                }
 
             }
             catch(Exception ex)

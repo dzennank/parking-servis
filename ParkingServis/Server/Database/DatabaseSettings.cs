@@ -130,7 +130,7 @@ namespace ParkingServis.Server.Database
             return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-        public int ExecuteNonQuery(string command, Dictionary<string, object> parameters)
+        public async Task<int> ExecuteNonQuery(string command, Dictionary<string, object> parameters)
         {
             dbNewConneciton();
             MySqlCommand cmd = new MySqlCommand();
@@ -143,9 +143,9 @@ namespace ParkingServis.Server.Database
                     cmd.Parameters.AddWithValue(param.Key, param.Value);
                 }
             }
-            int result = cmd.ExecuteNonQuery();
+            int result = await cmd.ExecuteNonQueryAsync();
             dbCon.Close();
-            return result;
+            return  result;
         }
 
         public MySqlDataReader executeQueryCommandWithoutParams(string command)

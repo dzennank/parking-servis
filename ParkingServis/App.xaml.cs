@@ -53,6 +53,8 @@ namespace ParkingServis
             //Vehicle services register
             services.AddTransient<IVehicleQueryRepository, VehicleQueryRepository>();
             services.AddTransient<VehicleQueryController>();
+            services.AddTransient<IVehicleCommandRepository, VehicleCommandRepository>();
+            services.AddTransient<VehicleCommandController>();
 
             //ParkingSession services register
             services.AddTransient<IParkingSessionCommandRepository, ParkingSessionCommandRepository>();
@@ -60,11 +62,18 @@ namespace ParkingServis
             services.AddTransient<IParkingSessionQueryRepository, ParkingSessionQueryRepository>();
             services.AddTransient<ParkingSessionQueryController>();
 
-            services.AddSingleton<MainWindow>();
+            services.AddTransient<MainWindow>();
             services.AddTransient<RegistrationWindow>();
             services.AddTransient<HomeWindow>();
             services.AddTransient<ParkDialog>();
             services.AddTransient<ParkingPayment>();
+            services.AddTransient<LocationsWindow>();
+            services.AddTransient<LocationAdminDetails>();
+            services.AddTransient<ParkingPaymentByAdmin>();
+            services.AddTransient<TransactionsWindow>();
+            services.AddTransient<UserProfilWindow>();
+            services.AddTransient<VehiclesWindow>();
+            services.AddTransient<AddVehicle>();
         }
     }
 

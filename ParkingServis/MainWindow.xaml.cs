@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ParkingServis.Client;
+using ParkingServis.Client.EmailConfig;
 using ParkingServis.Client.ViewModels;
 using ParkingServis.Client.Views;
 using ParkingServis.Server.Controllers.UserControllers;
@@ -31,8 +32,8 @@ namespace ParkingServis
             InitializeComponent();
             _userController = userController;
             _userQueryController = userQueryController;
-            _serviceProvider = serviceProvider;
-            
+            _serviceProvider = serviceProvider; 
+           Client.ServiceProvider.serviceProvider = serviceProvider;
         }
 
         private void emailTblock_MouseDown(object sender, MouseButtonEventArgs e)

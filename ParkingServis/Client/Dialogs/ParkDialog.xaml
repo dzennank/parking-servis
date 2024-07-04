@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParkingServis.Client.Dialogs"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
         mc:Ignorable="d"
         Title="ParkDialog" Height="450" Width="800" Background="#3AA9AD">
     <Grid>
-        <TextBlock Margin="0 50 0 0" Style="{StaticResource titleText}">Ime restorana</TextBlock>
+        <TextBlock Name="LocationNameTb" Margin="0 20 0 0" Style="{StaticResource titleText}">Ime restorana</TextBlock>
         <StackPanel VerticalAlignment="Center">
             
             <Label HorizontalAlignment="Center" Foreground="White" FontSize="20"> Izaberi vozilo</Label>
@@ -16,7 +18,13 @@
             </ComboBox>
             <StackPanel Margin="0 20 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="parkBtn" Margin=" 0 0 10 0" Style="{StaticResource button}" Background="#AD3E3A" Click="parkBtn_Click">Parkiraj</Button>
-                <Button Name="reservationBtn" Margin="10 0 0 0" Style="{StaticResource button}" Background="#AD3E3A">Rezervisi</Button>
+                <Button Name="reservationBtn" Margin="10 0 0 0" Style="{StaticResource button}" Background="#AD3E3A" Click="reservationBtn_Click">Rezervisi</Button>
+            </StackPanel>
+
+            <StackPanel Name="reservationPanel" Visibility="Collapsed" Margin="0 50 0 0">
+                <Label HorizontalAlignment="Center" Foreground="White" FontSize="20">Datum rezervacije</Label>
+                <xctk:DateTimePicker Width="200" Height="30" Name="reservationDate" Format="Custom" FormatString="dd/MM/yyyy HH:mm" />
+                <Button  Name="confrimReservationBtn" Margin="0 20 0 0" Style="{StaticResource button}" Height="48" Background="#AD3E3A" Click="confrimReservationBtn_Click">Potvrdi</Button>
             </StackPanel>
             
         </StackPanel>
