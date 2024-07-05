@@ -37,6 +37,7 @@
                     <Ellipse Margin="250 350 0 0" Width="40" Height="40" Fill="#4EB1B6"></Ellipse>
                     <Ellipse Margin="50 300 0 0" Width="20" Height="20" Fill="#4EB1B6"></Ellipse>
                 </Canvas>
+                <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\parkingServisLogo.png" Height="300" Width="300"></Image>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="1">
                     <TextBlock Style="{StaticResource titleText}">Vec imate kreiran nalog ?</TextBlock>
                     <Label></Label>

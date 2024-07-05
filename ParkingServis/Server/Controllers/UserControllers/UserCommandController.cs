@@ -35,6 +35,11 @@ namespace ParkingServis.Server.Controllers.UserControllers
             return await _commandRepository.UpdateUser(user);
         }
 
+        public async Task<bool> UpdateUserCreditsAfterPayment(decimal credits, int userId)
+        {
+            return await _commandRepository.UpdateUserCreditsAfterPayment(credits, userId);
+        }
+
         public async Task<bool> UpdateUserCredits(decimal credits, int userId)
         {
             return await _commandRepository.UpdateUserCredits(credits, userId);

@@ -136,5 +136,39 @@ namespace ParkingServis.Server.Services.ParkingSessionServices.Query
             }
         }
 
+        public List<ParkingSession> GetParkingSessions()
+        {
+            List<ParkingSession> sessions = new List<ParkingSession>();
+            try
+            {
+                DatabaseSettings connection = new DatabaseSettings();
+                string sql = "SELECT * FROM `parking_session`";
+                           
+                using (MySqlDataReader reader = connection.executeQueryCommandWithoutParams(sql))
+                {
+                    while (reader.Read())
+                    {
+                        ParkingSession session = new ParkingSession
+                        {
+                            Id = reader.GetInt32("id"),
+                            UserId = reader.GetInt32("user_id"),
+                            LocationId = reader.GetInt32("location_id"),
+                            VehicleReg = reader.GetString("vehicle_id"),
+                            ParkingStart = reader.GetDateTime("parking_start"),
+                            ParkingEnd = reader.GetDateTime("parking_end"),
+                            PaymentStatus = reader.GetBoolean("payment_status"),
+                            PricePaid = reader.GetDecimal("price_paid")
+                        };
+                        sessions.Add(session);
+                    }
+
+                }
+                return sessions;
+            }
+            catch (Exception ex)
+            {
+                return sessions;
+            }
+        }
     }
 }

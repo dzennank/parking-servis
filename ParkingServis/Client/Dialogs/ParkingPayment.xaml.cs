@@ -64,7 +64,7 @@ namespace ParkingServis.Client.Dialogs
             if (isPaid)
             {
                 MessageBox.Show("Naplata uspesna");
-                _userCommandRepository.UpdateUserCredits(priceToPay, Globals.CurrentUser.Id);
+                _userCommandRepository.UpdateUserCreditsAfterPayment(priceToPay, Globals.CurrentUser.Id);
                 Globals.CurrentUser.Credits -= priceToPay; 
                 ReloadHome?.Invoke(this, EventArgs.Empty);
                 this.Close();

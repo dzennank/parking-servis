@@ -49,5 +49,25 @@ namespace ParkingServis.Client.Views
             locationAdminDetails.Show();
             
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(searchTb.Text.Length >= 2)
+            {
+                LocationDataGrid.ItemsSource = filterLocations(searchTb.Text);
+            }
+            else
+            {
+                LocationDataGrid.ItemsSource = locations;
+            }
+        }
+
+        private List<Location> filterLocations(string txt)
+        {
+
+            List<Location> filteredLocations = locations.Where(loc => loc.Name.ToLower().Contains(txt.ToLower())).ToList();
+            return filteredLocations;
+
+        }
     }
 }

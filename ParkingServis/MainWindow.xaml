@@ -33,7 +33,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.4*"></RowDefinition>
                     <RowDefinition Height="0.3*"></RowDefinition>
-                    <RowDefinition Height="0.4*"></RowDefinition>
+                    <RowDefinition Height="0.3*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Canvas>
                     <Polygon Points="0,20 230,140 0,270" Fill="#4EB1B6"></Polygon>
@@ -41,7 +41,12 @@
                     <Ellipse Margin="250 350 0 0" Width="40" Height="40" Fill="#4EB1B6"></Ellipse>
                     <Ellipse Margin="50 300 0 0" Width="20" Height="20" Fill="#4EB1B6"></Ellipse>
                 </Canvas>
+                <StackPanel>
+                    <Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\parkingServisLogo.png" Height="300" Width="300"></Image>
+
+                </StackPanel>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="1">
+                   <!--<Image Source="C:\Users\amar-next\Desktop\Faks\ParkingServis\ParkingServis\Images\parkingServisLogo.png" Height="100" Width="100" HorizontalAlignment="Center"></Image>-->
                     <TextBlock Style="{StaticResource titleText}">Nemate kreiran nalog ?</TextBlock>
                     <Label></Label>
                     <TextBlock Style="{StaticResource normalText}">Ukoliko nemate kreiran nalog, registrujte se</TextBlock>

@@ -63,6 +63,26 @@ namespace ParkingServis.Server.Services.UserServices.Command
             try
             {
                 DatabaseSettings connection = new DatabaseSettings();
+                string sql = "UPDATE `users` SET `credits` = credits + @credits WHERE `id` = @userId";
+                var parametars = new Dictionary<string, object>
+                {
+                    { "@credits", credits },
+                    { "userId", userId },
+                };
+                await connection.executeQueryCommandAsyncParams(sql, parametars);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateUserCreditsAfterPayment(decimal credits, int userId)
+        {
+            try
+            {
+                DatabaseSettings connection = new DatabaseSettings();
                 string sql = "UPDATE `users` SET `credits` = credits - @credits WHERE `id` = @userId";
                 var parametars = new Dictionary<string, object>
                 {

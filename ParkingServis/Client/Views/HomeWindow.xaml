@@ -80,11 +80,17 @@
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.9*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Style="{StaticResource titleText}" Foreground="Black" HorizontalAlignment="Left" Margin="30 0 0 0">Top Lokacije:</TextBlock>
-                <TextBlock Name="creditsDataTb" HorizontalAlignment="Right" Style="{StaticResource titleText}" Foreground="Black" Margin="30 0 0 0">Stanje na racunu:</TextBlock>
+
+                <!--<Border Margin="10 10 0 0" HorizontalAlignment="Left" CornerRadius="15" Background="#3AA9AD" Width="300">
+                    <TextBlock Style="{StaticResource titleText}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" >Top Lokacije:</TextBlock>
+                </Border>
+                <Border HorizontalAlignment="Right" CornerRadius="15" Background="#3AA9AD" Width="300">
+                    <TextBlock Name="creditsDataTb" VerticalAlignment="Center" Style="{StaticResource titleText}" Foreground="White" Margin="0 10 0 30">Stanje na racunu:</TextBlock>
+                </Border>-->
+                
                 <Grid Grid.Row="1" x:Name="locationsGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*" />

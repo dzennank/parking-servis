@@ -1,4 +1,6 @@
-﻿using ParkingServis.Server.Controllers.UserControllers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ParkingServis.Client.Dialogs;
+using ParkingServis.Server.Controllers.UserControllers;
 using ParkingServis.Server.Models;
 using System;
 using System.Collections.Generic;
@@ -67,6 +69,13 @@ namespace ParkingServis.Client.Views
             {
                 MessageBox.Show("Doslo je do greske, profil nece biti izmenjen", "Izmena profila", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void creditsPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+           CardPayment window =
+             ServiceProvider.serviceProvider.GetRequiredService<CardPayment>();
+            window.Show();
         }
     }
 }

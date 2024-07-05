@@ -34,5 +34,9 @@ namespace ParkingServis.Server.Controllers.ParkingSessionController
         {
             return _parkingSessionQueryRepository.GetNumberOfActiveSessionsByLocationId(locationId);
         }
+        public List<ParkingSession> GetParkingSessions()
+        {
+            return _parkingSessionQueryRepository.GetParkingSessions();
+        }
     }
 }

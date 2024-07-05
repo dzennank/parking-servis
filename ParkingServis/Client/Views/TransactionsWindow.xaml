@@ -30,15 +30,18 @@
 
         <Border Margin="10 5 10 0" Grid.Row="1">
             <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <DataGrid Name="transactionDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Height="850" CanUserAddRows="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Lokacija" MinWidth="200" Width="*" Binding="{Binding LocationId}" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="Reg Oznaka" Width="*" Binding="{Binding VehicleReg}" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="Pocetak"  Width="*" Binding="{Binding ParkingStart}" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="Kraj"  Width="*" Binding="{Binding ParkingEnd}" FontWeight="Bold"/>
-                        <DataGridTextColumn Header="Cena" MinWidth="200" Width="*" Binding="{Binding PricePaid}" FontWeight="Bold"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <ScrollViewer>
+                    <DataGrid  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Name="transactionDataGrid" AutoGenerateColumns="False" IsReadOnly="False" Height="450" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lokacija" MinWidth="200" Width="*" Binding="{Binding LocationId}" FontWeight="Bold"/>
+                            <DataGridTextColumn Header="Reg Oznaka" Width="*" Binding="{Binding VehicleReg}" FontWeight="Bold"/>
+                            <DataGridTextColumn Header="Pocetak"  Width="*" Binding="{Binding ParkingStart}" FontWeight="Bold"/>
+                            <DataGridTextColumn Header="Kraj"  Width="*" Binding="{Binding ParkingEnd}" FontWeight="Bold"/>
+                            <DataGridTextColumn Header="Cena" MinWidth="200" Width="*" Binding="{Binding PricePaid}" FontWeight="Bold"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+                
             </StackPanel>
         </Border>
 </Grid>

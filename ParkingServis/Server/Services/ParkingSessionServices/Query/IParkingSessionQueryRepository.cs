@@ -14,5 +14,6 @@ namespace ParkingServis.Server.Services.ParkingSessionServices.Query
         Task<List<ParkingSession>> GetParkingSessionByLocationId(int locationId);
 
         int GetNumberOfActiveSessionsByLocationId(int locationId);
+        List<ParkingSession> GetParkingSessions();
     }
 }

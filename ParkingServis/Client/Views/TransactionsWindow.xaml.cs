@@ -28,14 +28,30 @@ namespace ParkingServis.Client.Views
         {
             InitializeComponent();
             _parkingSessionQueryController = parkingSessionQueryController;
-            GetSessions();
-           
+            if(Globals.CurrentUser.Role != "admin")
+            {
+                GetSessions();
+
+            } 
+            else
+            {
+                GetSessionsAdmin();
+            }
+
 
         }
 
         private async void GetSessions()
         {
             sessionsList = await _parkingSessionQueryController.GetSessionsByUserId(Globals.CurrentUser.Id, 1);
+            transactionDataGrid.ItemsSource = sessionsList;
+            totalSessionsLb.Content = sessionsList.Count.ToString();
+            totalSpentLb.Content = sessionsList.Sum(s => s.PricePaid).ToString();
+        }
+
+        private void GetSessionsAdmin()
+        {
+            sessionsList = _parkingSessionQueryController.GetParkingSessions();
             transactionDataGrid.ItemsSource = sessionsList;
             totalSessionsLb.Content = sessionsList.Count.ToString();
             totalSpentLb.Content = sessionsList.Sum(s => s.PricePaid).ToString();

@@ -18,7 +18,7 @@
             <TextBox Margin="10 0 0 0" Width="300" Height="30"></TextBox>
         </StackPanel>
         <Border Grid.Row="2" Background="WhiteSmoke" CornerRadius="20" Margin="20 0 20 0">
-            <DataGrid x:Name="sessionDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10" FontSize="14">
+            <DataGrid x:Name="sessionDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10" FontSize="14" CanUserAddRows="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding VehicleReg}" Width="*" FontSize="14"/>
                     <DataGridTextColumn Header="Adresa" Binding="{Binding ParkingStart}" Width="*" FontSize="14"/>

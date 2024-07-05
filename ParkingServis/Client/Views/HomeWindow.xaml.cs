@@ -52,7 +52,7 @@ namespace ParkingServis.Client.Views
             AddMarkerToLocations(locations);
             GenerateParkingLocationUI(locations);
             _serviceProvider = serviceProvider;
-            creditsDataTb.Text = $"Stanje na racunu: {Globals.CurrentUser.Credits}";
+            //creditsDataTb.Text = $"Stanje na racunu: {Globals.CurrentUser.Credits}";
             if (Globals.CurrentUser.Role != "admin")
             {
                 allLocationsNavTb.Visibility = Visibility.Hidden;
@@ -149,7 +149,7 @@ namespace ParkingServis.Client.Views
                 {
                     Margin = new Thickness(0, 5, 0, 0),
                     Style = (Style)FindResource("titleText"),
-                    FontSize = 18,
+                    FontSize = 14,
                     Text = $"Naziv: {location.Name}",
                     Name = "locationNameTb"
                 };
@@ -162,7 +162,7 @@ namespace ParkingServis.Client.Views
                     Name = $"numberOffFreeSpots{location.Id}",
                     Margin = new Thickness(0, 5, 0, 0),
                     Style = (Style)FindResource("titleText"),
-                    FontSize = 18,
+                    FontSize = 14,
                     Text = $"Broj slobodnih mesta: {location.Capacity - activeSessions}"
                 };
 
@@ -289,14 +289,14 @@ namespace ParkingServis.Client.Views
                                 {
                                     Margin = new Thickness(0, 5, 0, 0),
                                     Style = (Style)FindResource("titleText"),
-                                    FontSize = 18,
+                                    FontSize = 14,
                                     Text = !Globals.IsReservationSession ? $"Parkirano vozilo: {regNumber}" : $"Rezervacija za vozilo: {regNumber}",
                                 };
                                 TextBlock timeTb = new TextBlock
                                 {
                                     Margin = new Thickness(0, 5, 0, 0),
                                     Style = (Style)FindResource("titleText"),
-                                    FontSize = 18,
+                                    FontSize = 14,
                                     Text = $"Vreme pocetka parkinga :",
                                 };
 
@@ -304,7 +304,7 @@ namespace ParkingServis.Client.Views
                                 {
                                     Margin = new Thickness(0, 5, 0, 0),
                                     Style = (Style)FindResource("titleText"),
-                                    FontSize = 18,
+                                    FontSize = 14,
                                     Text = $"{parkingStart}",
                                 };
 

@@ -74,6 +74,7 @@ namespace ParkingServis
             services.AddTransient<UserProfilWindow>();
             services.AddTransient<VehiclesWindow>();
             services.AddTransient<AddVehicle>();
+            services.AddTransient<CardPayment>();
         }
     }
 
